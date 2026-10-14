@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#153d79">
+<meta name="description" content="KMTC StudyMate: revision notes, exam practice and quizzes for KMTC students.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+
+<title>KMTC StudyMate</title>
+<style>
+:root{--navy:#153d79;--blue:#2c67c7;--pale:#e8f0ff;--bg:#f5f7fb;--ink:#172338;--muted:#68758a;--line:#e1e7f0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:var(--navy);color:white;padding:24px 18px 22px;border-radius:0 0 24px 24px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}.logo{background:white;color:var(--navy);border-radius:12px;padding:9px}
+header h1{font-size:25px;line-height:1.15;margin:22px 0 8px}header p{color:#dbe7ff;margin:0;font-size:14px}
+main{max-width:720px;margin:auto;padding:16px 14px 90px}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:0 0 22px}
+button,.tab{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px;background:white;color:var(--ink);box-shadow:0 1px 4px #142b5010}
+.tab{display:flex;align-items:center;justify-content:center;gap:7px;font-weight:650;font-size:14px}.tab.active{background:var(--pale);color:var(--blue);outline:1px solid #b8cefa}
+h2{font-size:21px;margin:8px 0}h3{font-size:17px;margin:0 0 6px}.muted{color:var(--muted);font-size:14px}
+.card{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;margin:10px 0;box-shadow:0 2px 8px #142b5008}
+.cardbtn{text-align:left;width:100%;display:block}.card p{margin:6px 0}.primary{background:var(--blue);color:white;font-weight:700;width:100%;margin-top:10px}.secondary{background:var(--pale);color:var(--blue);font-weight:700}
+input[type=search]{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;font:inherit;margin:12px 0}
+.option{display:block;width:100%;text-align:left;border:1px solid var(--line);background:white;padding:13px;margin:8px 0;border-radius:12px;box-shadow:none}
+.option.chosen{border-color:var(--blue);background:var(--pale)}.option.correct{border-color:#168451;background:#e8f8ef}.option.wrong{border-color:#c93b46;background:#fff0f1}
+.badge{display:inline-block;font-size:12px;background:var(--pale);color:var(--blue);border-radius:999px;padding:5px 9px;font-weight:700}
+footer{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;border-top:1px solid var(--line);padding:9px max(12px,calc((100vw - 720px)/2));display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+footer button{box-shadow:none;background:transparent;font-size:12px;padding:8px 2px;color:var(--muted)}footer button.active{color:var(--blue);background:var(--pale);font-weight:700}
+ul,ol{padding-left:22px}li{margin:7px 0}.notice{background:#fff7e6;border:1px solid #f3dfaa;padding:12px;border-radius:12px;font-size:13px;color:#6c5314}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">🎓</span><span>KMTC StudyMate</span></div>
+  <h1>Your next success<br>starts here.</h1>
+  <p>LEARN · PRACTISE · EXCEL</p>
+</header>
+<main>
+  <nav class="tabs">
+    <button class="tab active" data-page="notes">📚 Notes</button>
+    <button class="tab" data-page="papers">📝 Past papers</button>
+    <button class="tab" data-page="quiz">🧠 Quizzes</button>
+  </nav>
+  <section id="content"></section>
+</main>
+<footer>
+  <button data-page="home" class="active">⌂<br>Home</button>
+  <button data-page="notes">▤<br>Notes</button>
+  <button data-page="papers">▣<br>Papers</button>
+  <button data-page="quiz">✓<br>Quiz</button>
+</footer>
+<script>
+const notes=[
+ {title:"Fracture healing",course:"Orthopedic & Trauma",desc:"Stages of bone repair and factors affecting healing",body:`<h3>Definition</h3><p>Fracture healing is the biological process through which the body repairs a broken bone.</p><h3>Main stages</h3><ol><li><b>Inflammatory phase:</b> bleeding and hematoma formation initiate repair.</li><li><b>Reparative phase:</b> soft callus forms, followed by hard callus and new bone.</li><li><b>Remodelling phase:</b> bone is reshaped and strengthened along lines of stress.</li></ol><h3>Factors affecting healing</h3><ul><li>Blood supply and soft-tissue condition.</li><li>Fracture stability and alignment.</li><li>Nutrition, age and general health.</li><li>Infection and smoking.</li></ul>`},
+ {title:"Trauma assessment",course:"Emergency Care",desc:"Primary survey and initial patient assessment",body:`<h3>Primary survey: ABCDE</h3><ul><li><b>A — Airway:</b> maintain airway with cervical spine protection.</li><li><b>B — Breathing:</b> assess breathing and ventilation.</li><li><b>C — Circulation:</b> assess circulation and control major bleeding.</li><li><b>D — Disability:</b> perform a rapid neurological assessment.</li><li><b>E — Exposure:</b> examine the patient while preventing hypothermia.</li></ul><p>Treat life-threatening problems as they are identified and follow local emergency protocols.</p>`},
+ {title:"Body fluid compartments",course:"Anatomy & Physiology",desc:"Intracellular and extracellular fluid",body:`<h3>Main compartments</h3><ul><li><b>Intracellular fluid (ICF):</b> fluid inside cells.</li><li><b>Extracellular fluid (ECF):</b> fluid outside cells, including interstitial fluid and plasma.</li></ul><p>Total body water and its distribution vary with age, body composition and health.</p><p>Water balance is regulated by thirst, the kidneys and hormones such as antidiuretic hormone (ADH).</p>`}
+];
+const questions=[
+ {q:"Which cells are primarily responsible for forming new bone?",opts:["Osteoclasts","Osteoblasts","Chondrocytes","Fibroblasts"],a:1,why:"Osteoblasts form new bone by producing osteoid, which subsequently mineralizes."},
+ {q:"What is the first priority in assessing a seriously injured trauma patient?",opts:["Obtain an X-ray","Apply a POP cast","Assess and support the ABCs","Start physiotherapy"],a:2,why:"Initial trauma assessment prioritizes airway, breathing and circulation."},
+ {q:"Which is a common sign of a fracture?",opts:["Localized pain and swelling","Improved joint movement","Increased limb length","Painless movement in all cases"],a:0,why:"Pain, swelling, tenderness and loss of function are common fracture features."}
+];
+let page="home",query="",openNote=null,paperAnswers=false,qi=0,selected=null,graded=false,score=0,finished=false,saved=new Set();
+const content=document.getElementById("content");
+function setPage(p){page=p;document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===p));render()}
+function render(){
+ if(page==="home") content.innerHTML=`<h2>Welcome to your study space</h2><p class="muted">Choose what you want to work on today.</p>
+ <button class="card cardbtn" data-go="notes"><h3>📚 Study notes</h3><p class="muted">Revision notes organised by topic.</p></button>
+ <button class="card cardbtn" data-go="papers"><h3>📝 Exam practice</h3><p class="muted">Original practice questions and model answers.</p></button>
+ <button class="card cardbtn" data-go="quiz"><h3>🧠 Test yourself</h3><p class="muted">Take a short multiple-choice quiz.</p></button>
+ <div class="notice">Prototype content only. Sample questions are not official KMTC past papers.</div>`;
+ if(page==="notes"){
+  if(openNote){let n=notes.find(x=>x.title===openNote);content.innerHTML=`<button class="secondary" id="backNotes">← All notes</button><p><span class="badge">${n.course}</span></p><h2>${n.title}</h2><div class="card">${n.body}</div><button class="primary" id="saveNote">${saved.has(n.title)?"✓ Saved — remove bookmark":"☆ Save topic"}</button>`;document.getElementById("backNotes").onclick=()=>{openNote=null;render()};document.getElementById("saveNote").onclick=()=>{saved.has(n.title)?saved.delete(n.title):saved.add(n.title);render()};return}
+  content.innerHTML=`<h2>Study notes</h2><p class="muted">Find a topic to revise.</p><input id="search" type="search" placeholder="Search topics..." value="${query.replaceAll('"','&quot;')}">${notes.filter(n=>(n.title+" "+n.course+" "+n.desc).toLowerCase().includes(query.toLowerCase())).map(n=>`<button class="card cardbtn" data-note="${n.title}"><span class="badge">${n.course}</span><h3 style="margin-top:10px">${n.title}</h3><p class="muted">${n.desc}</p></button>`).join("")}<p class="muted">Saved topics: ${saved.size?saved.size:"None yet"}</p>`;
+  document.getElementById("search").oninput=e=>{query=e.target.value;let pos=e.target.selectionStart;render();let el=document.getElementById("search");el.focus();el.setSelectionRange(pos,pos)};return
+ }
+ if(page==="papers")content.innerHTML=`<h2>Exam practice</h2><p class="muted">Original practice material for revision.</p><div class="card"><span class="badge">Sample paper</span><h3 style="margin-top:10px">Orthopedic & Trauma Medicine</h3><p class="muted">Topic: Fracture management · 3 questions</p><ol><li>Define a fracture and classify fractures.</li><li>Describe the stages of fracture healing.</li><li>List five complications of fractures.</li></ol><button class="primary" id="answers">${paperAnswers?"Hide model answers":"View model answers"}</button>${paperAnswers?`<hr><h3>1. Definition and classification</h3><p>A fracture is a break in the continuity of a bone. Fractures may be open or closed, complete or incomplete, displaced or undisplaced, and classified by pattern or cause.</p><h3>2. Stages of healing</h3><p>Inflammation and hematoma formation, callus formation and ossification, followed by bone remodelling.</p><h3>3. Five complications</h3><p>Infection, delayed union, non-union, malunion and neurovascular injury. Other complications include compartment syndrome and fat embolism syndrome.</p>`:""}</div><div class="notice">This is original practice material, not an authenticated official KMTC examination paper.</div>`;
+ if(page==="quiz"){
+  if(finished){content.innerHTML=`<div class="card" style="text-align:center;padding:28px"><div style="font-size:42px">🏆</div><h2>Quiz complete!</h2><h1>${score} / ${questions.length}</h1><p class="muted">You answered ${score} questions correctly.</p><button class="primary" id="retry">Try again</button></div>`;document.getElementById("retry").onclick=()=>{qi=0;selected=null;graded=false;score=0;finished=false;render()};return}
+  let q=questions[qi];content.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><h2>Quick quiz</h2><span class="badge">${qi+1} of ${questions.length}</span></div><div style="height:6px;background:#e1e7f0;border-radius:9px;margin:12px 0 20px"><div style="height:6px;background:#2c67c7;border-radius:9px;width:${(qi+1)/questions.length*100}%"></div></div><h3>${q.q}</h3>${q.opts.map((o,i)=>`<button class="option ${selected===i?"chosen":""} ${graded&&i===q.a?"correct":""} ${graded&&selected===i&&selected!==q.a?"wrong":""}" data-option="${i}" ${graded?"disabled":""}>${String.fromCharCode(65+i)}. ${o}</button>`).join("")}${graded?`<div class="card"><b>${selected===q.a?"Correct!":"Not quite."}</b><p>Correct answer: ${q.opts[q.a]}</p><p class="muted">${q.why}</p></div><button class="primary" id="next">${qi===questions.length-1?"See results":"Next question →"}</button>`:`<button class="primary" id="check" ${selected===null?"disabled":""}>Check answer</button>`}`;
+ }
+}
+document.addEventListener("click",e=>{let t=e.target.closest("button");if(!t)return;if(t.dataset.page){setPage(t.dataset.page);return}if(t.dataset.go){setPage(t.dataset.go);return}if(t.dataset.note){openNote=t.dataset.note;render();return}if(t.dataset.option!==undefined&&!graded){selected=Number(t.dataset.option);render();return}if(t.id==="answers"){paperAnswers=!paperAnswers;render()}if(t.id==="check"&&selected!==null){graded=true;if(selected===questions[qi].a)score++;render()}if(t.id==="next"){if(qi===questions.length-1)finished=true;else qi++;selected=null;graded=false;render()}});
+render();
+</script>
+<script>if ("serviceWorker" in navigator && location.protocol.startsWith("http")) { window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {})); }</script>
+</body>
+</html>
